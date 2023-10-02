@@ -12,8 +12,6 @@ app.use(signinRouter);
 app.use(signupRouter);
 app.use(signoutRouter);
 
-console.log('Is this working');
-
 app.listen(4000, () => {
   console.log('listening on port 4000!!!!!');
 });
