@@ -10,5 +10,9 @@ export class Password {
     return `${buf.toString('hex')}.${salt}}`;
   }
 
-  static compare(storePassword: string, suppliedPassword: string) {}
+  static async compare(storePassword: string, suppliedPassword: string) {
+    const [hashPassword, salt] = storePassword.split('.');
+    const buf = (await scrpytAsync(suppliedPassword, salt, 64)) as Buffer;
+    return hashPassword === bug.toString('hex');
+  }
 }
