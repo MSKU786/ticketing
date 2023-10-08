@@ -35,12 +35,14 @@ router.post(
     await user.save();
 
     //Generate Web token
+
     const jwtToken = jwt.sign(
       {
         id: user.id,
         email: user.email,
       },
-      'asdf'
+      //To override tS functionality to check because we alredy define this key
+      process.env.JWT_KEY!
     );
 
     //Store it on the session object
