@@ -1,7 +1,5 @@
 import express, { Request, Response } from 'express';
 import { body, validationResult } from 'express-validator';
-import { RequestValidationError } from '../errors/request-validation-error';
-
 const router = express.Router();
 
 router.post(
@@ -10,13 +8,8 @@ router.post(
     body('email').isEmail().withMessage('Email must be valid'),
     body('password').trim().notEmpty().withMessage('Password is not correct'),
   ],
-  async (req: Request, res: Response) => {
-    const errors = validationResult(req);
-
-    if (!errors.isEmpty()) {
-      throw new RequestValidationError(errors.array());
-    }
-  }
+  validationResult,
+  async (req: Request, res: Response) => {}
 );
 
 export { router as signinRouter };
