@@ -13,6 +13,6 @@ export class Password {
   static async compare(storePassword: string, suppliedPassword: string) {
     const [hashPassword, salt] = storePassword.split('.');
     const buf = (await scrpytAsync(suppliedPassword, salt, 64)) as Buffer;
-    return hashPassword === bug.toString('hex');
+    return hashPassword === buf.toString('hex');
   }
 }
