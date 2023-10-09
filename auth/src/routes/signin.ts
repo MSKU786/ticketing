@@ -8,7 +8,7 @@ import { validateRequest } from '../middlewares/validate-request';
 const router = express.Router();
 
 router.post(
-  '/api/existingUser/signin',
+  '/api/user/signin',
   [
     body('email').isEmail().withMessage('Email must be valid'),
     body('password').trim().notEmpty().withMessage('Password is not correct'),
@@ -18,7 +18,6 @@ router.post(
     const { email, password } = req.body;
 
     const existingUser = await User.findOne({ email });
-
     if (!existingUser) {
       throw new BadRequestError('INvalid Credentials');
     }
