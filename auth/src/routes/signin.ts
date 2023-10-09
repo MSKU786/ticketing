@@ -1,9 +1,10 @@
 import express, { Request, Response } from 'express';
-import { body, validationResult } from 'express-validator';
+import { body } from 'express-validator';
 import { BadRequestError } from '../errors/bad-request-error';
 import { User } from '../models/user';
 import { Password } from '../services/password';
 import jwt from 'jsonwebtoken';
+import { validateRequest } from '../middlewares/validate-request';
 const router = express.Router();
 
 router.post(
@@ -12,7 +13,7 @@ router.post(
     body('email').isEmail().withMessage('Email must be valid'),
     body('password').trim().notEmpty().withMessage('Password is not correct'),
   ],
-  validationResult,
+  validateRequest,
   async (req: Request, res: Response) => {
     const { email, password } = req.body;
 
