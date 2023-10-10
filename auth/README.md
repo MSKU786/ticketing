@@ -14,3 +14,19 @@ automatically managed by brower
 Authentication/Authorization Mechanism
 Stores any data we want
 Have to manage manually
+
+** Ideal Setup **
+
+index.js -----> app.js --------> test file
+
+code to start up the app and listen on port 3000
+|
+|
+|
+
+- Express App that is not listening on any port
+  ^
+  |
+  |
+  |
+  Code to test app with supertest
