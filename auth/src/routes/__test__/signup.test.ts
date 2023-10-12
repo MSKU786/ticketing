@@ -47,3 +47,15 @@ it('Disallow duplicate emails a 500 on invalid parameter', async () => {
     })
     .expect(400);
 });
+
+it('sets a cookie after on successful signup', async () => {
+  const res = await request(app)
+    .post('/api/user/signup')
+    .send({
+      email: 'test@test.com',
+      password: 'password',
+    })
+    .expect(201);
+
+  expect(res.get('Set-Cookie')).toBeDefined();
+});
