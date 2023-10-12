@@ -29,3 +29,21 @@ it('returns a 500 on invalid parameter', async () => {
     })
     .expect(500);
 });
+
+it('Disallow duplicate emails a 500 on invalid parameter', async () => {
+  await request(app)
+    .post('/api/user/signup')
+    .send({
+      email: 'test@test.com',
+      password: 'password',
+    })
+    .expect(201);
+
+  await request(app)
+    .post('/api/user/signup')
+    .send({
+      email: 'test@test.com',
+      password: 'password',
+    })
+    .expect(400);
+});
