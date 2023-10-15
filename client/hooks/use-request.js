@@ -1,0 +1,30 @@
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+
+const useRequest = ({ url, method, body }) => {
+  const [errors, setErrors] = useState(null);
+
+  const doRequest = async () => {
+    try {
+      setErrors(null);
+      const res = await axios[method](url, body);
+      return res.data;
+    } catch (err) {
+      const errorMessages = err.response.data.errors;
+      setErrors(
+        <div className="alert alert-danger">
+          <h4>Oops!!</h4>
+          <ul className="my-0">
+            {errorMessages.map((e) => (
+              <li key={e.message}>{e.message}</li>
+            ))}
+          </ul>
+        </div>
+      );
+    }
+  };
+
+  return { doRequest, errors };
+};
+
+export default useRequest;
