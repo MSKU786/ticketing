@@ -3,17 +3,20 @@ import axios from 'axios';
 export default () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errors, setErrors] = useState([]);
 
   const submit = async (event) => {
     event.preventDefault();
     console.log(email, password);
 
-    const res = await axios.post('/api/user/signup', {
-      email,
-      password,
-    });
-
-    console.log(res.data);
+    try {
+      const res = await axios.post('/api/user/signup', {
+        email,
+        password,
+      });
+    } catch (e) {
+      setErrors(e.response.data.errors);
+    }
   };
 
   return (
@@ -36,6 +39,16 @@ export default () => {
           className="form-control"
         />
       </div>
+      {errors.length > 0 && (
+        <div className="alert alert-danger">
+          <h4>Oops!!</h4>
+          <ul className="my-0">
+            {errors.map((e) => (
+              <li key={e.message}>{e.message}</li>
+            ))}
+          </ul>
+        </div>
+      )}
       <button className="btn btn-primary">Sign Up</button>
     </form>
   );
