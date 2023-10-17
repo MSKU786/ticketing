@@ -4,7 +4,6 @@ import { app } from '../../app';
 it('Curernt User sign in', async () => {
   const cookie = await global.signin();
 
-  console.log(cookie);
   const res = await request(app)
     .get('/api/user/currentUser')
     .set('Cookie', cookie)
