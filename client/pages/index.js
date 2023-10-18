@@ -5,7 +5,7 @@ const LandingPage = ({ currentUser }) => {
   return <h2>Hello This is first page</h2>;
 };
 
-LandingPage.getInitialProps = async () => {
+LandingPage.getInitialProps = async ({ req }) => {
   if (typeof window === 'undefined') {
     // we are on the server!
     // requests should be made to http://ingress-nginx.ingress-nginx...laksdjfk
@@ -13,9 +13,7 @@ LandingPage.getInitialProps = async () => {
       .get(
         'http://ingress-nginx-controller.ingress-nginx.svc.cluster.local/api/user/currentUser',
         {
-          headers: {
-            Host: 'ticketing.dev',
-          },
+          headers: req.headers,
         }
       )
       .catch((err) => {
