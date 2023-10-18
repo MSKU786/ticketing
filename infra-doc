@@ -27,6 +27,6 @@ ingress-nginx-controller-admission ClusterIP 10.97.222.68 <none> 443/TCP 30d
 
 The url for accessing ingress from client so basically what are we doing is routing our req through the inginx we already have setup to figure out which route point to which service
 
-so the url will be http://service-name.namespace.svc.cluster.local
+so the url will be http://{{service-name}}.{{namespace}}.svc.cluster.local
 
 \*\* Note: We need to do this because we are trying to fetch the data during server side rendering inside getInitialPropsFunction
