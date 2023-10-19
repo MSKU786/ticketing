@@ -1,5 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.css';
 
-export default ({ Component, pageProps }) => {
+const AppComponent = ({ Component, pageProps }) => {
   return <Component {...pageProps} />;
 };
+
+AppComponent.getInitialProps = async (context) => {};
+
+export default AppComponent;
