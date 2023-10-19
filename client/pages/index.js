@@ -1,4 +1,3 @@
-import axios from 'axios';
 import buildClient from '../api/build-client';
 
 const LandingPage = ({ currentUser }) => {
@@ -10,6 +9,7 @@ const LandingPage = ({ currentUser }) => {
 };
 
 LandingPage.getInitialProps = async (context) => {
+  console.log('not even getting used now');
   const { data } = await buildClient(context).get('/api/user/currentUser');
   return data;
 };
