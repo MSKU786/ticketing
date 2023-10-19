@@ -1,10 +1,11 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import buildClient from '../api/build-client';
+import Header from '../component/header';
 
-const AppComponent = ({ Component, pageProps }) => {
+const AppComponent = ({ Component, pageProps, currentUser }) => {
   return (
     <div>
-      <h2> Header :) :)</h2>
+      <Header currentUser={currentUser} />
       <Component {...pageProps} />
     </div>
   );
@@ -13,12 +14,19 @@ const AppComponent = ({ Component, pageProps }) => {
 AppComponent.getInitialProps = async (appContext) => {
   const client = buildClient(appContext.ctx);
   const { data } = await client.get('/api/user/currentUser');
-  console.log(appContext);
+
   let pageProps = {};
   if (appContext.Component.getInitialProps)
     pageProps = await appContext.Component.getInitialProps(appContext.ctx);
-  console.log(pageProps);
-  return data;
+
+  return {
+    pageProps,
+    ...data,
+  };
 };
 
 export default AppComponent;
+
+// <Link className="navbar-brand" href="/">
+//   GitTix
+// </Link>
