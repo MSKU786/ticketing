@@ -14,7 +14,7 @@ export default ({ currentUser }) => {
           className="nav-item"
         >
           <Link
-            className="navbar-brand"
+            className="nav-link"
             href={href}
           >
             {label}
