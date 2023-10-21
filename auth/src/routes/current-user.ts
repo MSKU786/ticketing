@@ -1,7 +1,7 @@
 import express, { Router } from 'express';
 import jwt from 'jsonwebtoken';
 import { currentUser } from '@ticcketing/common';
-import { requireAuth } from '@ticcketing/common';
+
 const router = express.Router();
 
 router.get('/api/user/currentUser', currentUser, (req, res) => {
