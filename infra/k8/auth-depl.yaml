@@ -13,6 +13,8 @@ spec:
         app: auth
     spec:
       containers:
+        - name: MONGO_URI
+          value: 'mongodb://auth-mongo-srv:27017/auth'
         - name: auth
           image: manish332000/auth
           env:
