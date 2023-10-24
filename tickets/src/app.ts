@@ -4,6 +4,7 @@ import { json } from 'body-parser';
 import { errorHandler } from '@ticcketing/common';
 import { NotFoundError } from '@ticcketing/common';
 import cookieSession from 'cookie-session';
+import { createTicketRouter } from './routes/new';
 
 const app = express();
 app.set('trust proxy', true);
@@ -15,6 +16,8 @@ app.use(
     secure: process.env.NODE_ENV !== 'test',
   })
 );
+
+app.use(createTicketRouter);
 
 app.all('*', async () => {
   throw new NotFoundError();
