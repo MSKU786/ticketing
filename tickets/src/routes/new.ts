@@ -1,9 +1,9 @@
 import express, { Router } from 'express';
-import { currentUser } from '@ticcketing/common';
+import { requireAuth } from '@ticcketing/common';
 
 const router = express.Router();
 
-router.post('/api/tickets', currentUser, (req, res) => {
+router.post('/api/tickets', requireAuth, (req, res) => {
   return res.sendStatus(200);
 });
 

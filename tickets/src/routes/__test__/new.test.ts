@@ -7,7 +7,10 @@ it('has a route handler listening to /api/tickets for post request', async () =>
   expect(res.status).not.toEqual(404);
 });
 
-it('can only be accessed iuf user signed in', async () => {});
+it('can only be accessed iuf user signed in', async () => {
+  await request(app).post('/api/tickets').send({}).expect(401);
+});
+
 it('return an error if an invalid title is provided', async () => {});
 it('return an error if an invalid price is provided', async () => {});
 it('creates a ticket with valid input', async () => {});
