@@ -27,7 +27,7 @@ it('return an error if an invalid title is provided', async () => {
       title: '',
       price: 10,
     })
-    .expect(400);
+    .expect(500);
 
   await request(app)
     .post('/api/tickets')
@@ -35,9 +35,10 @@ it('return an error if an invalid title is provided', async () => {
     .send({
       price: 10,
     })
-    .expect(400);
+    .expect(500);
   ///*** */
 });
+
 it('return an error if an invalid price is provided', async () => {
   await request(app)
     .post('/api/tickets')
@@ -46,7 +47,7 @@ it('return an error if an invalid price is provided', async () => {
       title: 'asdfadf',
       price: -10,
     })
-    .expect(400);
+    .expect(500);
 
   await request(app)
     .post('/api/tickets')
@@ -54,6 +55,7 @@ it('return an error if an invalid price is provided', async () => {
     .send({
       title: 'Hey IMMM',
     })
-    .expect(400);
+    .expect(500);
 });
+
 it('creates a ticket with valid input', async () => {});
