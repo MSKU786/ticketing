@@ -11,6 +11,7 @@ const createTicket = () => {
     });
   return ticket;
 };
+
 it('returns 200 if the ticket search is successfull', async () => {
   await createTicket();
   await createTicket();
