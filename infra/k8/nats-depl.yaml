@@ -27,7 +27,7 @@ spec:
               '5s',
               '-hbf',
               '2',
-              '_SD',
+              '-SD',
               '-cid',
               'ticketing',
             ]
