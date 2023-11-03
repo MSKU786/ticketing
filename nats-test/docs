@@ -1,0 +1,10 @@
+Commands
+
+For portfoward
+kubectl port-forward nats<pod name> 4222:4222
+
+For Monitoring
+localhost:8222/streaming
+
+for Monitoring Subs
+localhost:8222/streaming/channelsz?subs=1
