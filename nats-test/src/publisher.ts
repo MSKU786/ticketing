@@ -1,5 +1,7 @@
 import nats from 'node-nats-streaming';
 
+console.clear();
+
 // it's same as client
 const stan = nats.connect('ticketing', 'abc', {
   url: 'https://localhost:4222',
