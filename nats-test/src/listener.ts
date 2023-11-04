@@ -15,10 +15,14 @@ stan.on('close', () => {
 stan.on('connect', () => {
   console.log('Listener connected to NATS');
 
-  const options = stan.subscriptionOptions().setManualAckMode(true);
+  const options = stan
+    .subscriptionOptions()
+    .setManualAckMode(true)
+    .setDeliverAllAvailable()
+    .setDurableName('accouting-service');
   const subscription = stan.subscribe(
     'ticket:created',
-    'order-service-queue-group',
+    'queue-group-name',
     options
   );
 
