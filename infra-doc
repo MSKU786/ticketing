@@ -30,3 +30,7 @@ The url for accessing ingress from client so basically what are we doing is rout
 so the url will be http://{{service-name}}.{{namespace}}.svc.cluster.local
 
 \*\* Note: We need to do this because we are trying to fetch the data during server side rendering inside getInitialPropsFunction
+
+//
+
+docker build -t manish332000/ticketing_ticket .
