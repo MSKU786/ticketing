@@ -6,7 +6,7 @@ build:
   local:
     push: false
   artifacts:
-    - image: manish332000/auth
+    - image: manish332000/ticketing_auth
       context: auth
       docker:
         dockerfile: Dockerfile
