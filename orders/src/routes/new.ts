@@ -16,6 +16,8 @@ router.post(
   ],
   validateRequest,
   async (req: Request, res: Response) => {
+    //find the ticket user is trying to order
+
     return res.send({});
   }
 );
