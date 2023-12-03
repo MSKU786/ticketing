@@ -32,18 +32,9 @@ router.post(
       throw new NotFoundError();
     }
     //Make sure ticket is not reserved
-    const existingOrder = await Order.findOne({
-      ticket: ticket,
-      status: {
-        $in: [
-          OrderStatus.AwaitingPayment,
-          OrderStatus.Complete,
-          OrderStatus.Created,
-        ],
-      },
-    });
+    const isReserved = await ticket.isReserved();
 
-    if (existingOrder) {
+    if (isReserved) {
       throw new BadRequestError('Ticket is already Reserved');
     }
     //Calculate an expiration date for the order
