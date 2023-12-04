@@ -1,9 +1,6 @@
 import request from 'supertest';
 import { app } from '../../app';
-import mongoose from 'mongoose';
 import { Ticket } from '../../models/ticket';
-import { OrderStatus } from '@ticcketing/common';
-import { Order } from '../../models/order';
 
 it('fetch the order', async () => {
   const ticket = Ticket.build({
@@ -53,6 +50,4 @@ it('Return Error if other user try to access another user order', async () => {
     .set('Cookie', global.signin())
     .send()
     .expect(401);
-
-  expect(fetchOrder.id).toEqual(order.id);
 });
