@@ -32,3 +32,22 @@ it('implemetns optimistic currency control', async () => {
 
   throw new Error('should not reach here');
 });
+
+it('VERIFY whether versioning is increasing as expected', async () => {
+  //Create am omstamce of ticket
+
+  const ticket = Ticket.build({
+    title: 'concert',
+    price: 5,
+    userId: '123',
+  });
+
+  await ticket.save();
+  expect(ticket.version).toEqual(0);
+
+  await ticket.save();
+  expect(ticket.version).toEqual(1);
+
+  await ticket.save();
+  expect(ticket.version).toEqual(2);
+});

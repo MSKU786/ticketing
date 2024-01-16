@@ -34,3 +34,6 @@ so the url will be http://{{service-name}}.{{namespace}}.svc.cluster.local
 //
 
 docker build -t manish332000/ticketing_ticket .
+
+\*\* How to INstall Ingress-nginx \*\*
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.8.2/deploy/static/provider/cloud/deploy.yaml
