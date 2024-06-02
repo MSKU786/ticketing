@@ -3,10 +3,12 @@ kind: Config
 metadata:
   name: ticketing
 build:
-  local:
-    push: false
+  # local:
+  #   push: false
+  googleCloudBuild:
+    projectId: ticketing-dev-419006
   artifacts:
-    - image: manish332000/ticketing_auth
+    - image: us.gcr.io/ticketing-dev-419006/ticketing_auth
       context: auth
       docker:
         dockerfile: Dockerfile
@@ -14,7 +16,7 @@ build:
         manual:
           - dest: .
             src: 'src/**/*.ts'
-    - image: manish332000/ticketing_client
+    - image: us.gcr.io/ticketing-dev-419006/ticketing_client
       context: client
       docker:
         dockerfile: Dockerfile
@@ -22,7 +24,7 @@ build:
         manual:
           - dest: .
             src: 'src/**/*.ts'
-    - image: manish332000/ticketing_ticket
+    - image: us.gcr.io/ticketing-dev-419006/ticketing_ticket
       context: tickets
       docker:
         dockerfile: Dockerfile
@@ -30,7 +32,7 @@ build:
         manual:
           - dest: .
             src: 'src/**/*.ts'
-    - image: manish332000/ticketing_orders
+    - image: us.gcr.io/ticketing-dev-419006/ticketing_orders
       context: orders
       docker:
         dockerfile: Dockerfile
