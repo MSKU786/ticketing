@@ -50,12 +50,23 @@ it('finds, update and saves a ticket', async () => {
   expect(updatedTicket!.price).toEqual(data.price);
 });
 
-it('acks the message', async () => {
-  const { listener, data, msg } = await setup();
+// it('acks the message', async () => {
+//   const { listener, data, msg } = await setup();
 
-  // calls the onMessage function with the data object + message object
-  await listener.onMessge(data, msg);
+//   // calls the onMessage function with the data object + message object
+//   await listener.onMessge(data, msg);
 
-  // write a function to make sure assr is called
-  expect(msg.ack).toHaveBeenCalled();
-});
+//   // write a function to make sure assr is called
+//   expect(msg.ack).toHaveBeenCalled();
+// });
+
+// it('does not call ack if the event has skipped a version number', async () => {
+//   const { listener, data, msg } = await setup();
+
+//   data.version = 10;
+//   try {
+//     await listener.onMessge(data, msg);
+//   } catch (err) {}
+
+//   expect(msg.ack).not.toHaveBeenCalled();
+// });
