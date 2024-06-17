@@ -12,7 +12,7 @@ export class OrderCreatedListener extends Listener<OrderCreatedEvent> {
   subject: Subjects.OrderCreated = Subjects.OrderCreated;
   queueGroupName: string = queueGroupName;
 
-  async onMessge(data: OrderCreatedEvent['data'], msg: Message): void {
+  async onMessge(data: OrderCreatedEvent['data'], msg: Message) {
     // find the ticket order is reserving
     const ticket = await Ticket.findById(data.ticket.id);
 

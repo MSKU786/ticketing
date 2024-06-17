@@ -16,6 +16,7 @@ const setup = async () => {
     userId: 'adfa',
   });
 
+  await ticket.save();
   //Creat a fake data event
 
   const data: OrderCreatedEvent['data'] = {
@@ -30,11 +31,28 @@ const setup = async () => {
     },
   };
 
-  //@ts-ignore
+  // @ts-ignore
   const msg: Message = {
-    ack: jest.fn();
+    ack: jest.fn(),
   };
 
-
-  return {listener, ticket, data, msg};
+  return { listener, ticket, data, msg };
 };
+
+it('sets the user id of tikcet', async () => {
+  const { listener, ticket, data, msg } = await setup();
+
+  await listener.onMessge(data, msg);
+
+  const updatedTicket = await Ticket.findById(ticket.id);
+
+  expect(updatedTicket!.orderId).toEqual(data.id);
+});
+
+it('ack the message', async () => {
+  const { listener, ticket, data, msg } = await setup();
+
+  await listener.onMessge(data, msg);
+
+  expect(msg.ack).toHaveBeenCalled();
+});
