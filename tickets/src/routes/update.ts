@@ -1,5 +1,6 @@
 import express, { Request, Response } from 'express';
 import {
+  BadRequestError,
   NotAuthorizedError,
   NotFoundError,
   requireAuth,
@@ -28,6 +29,10 @@ router.put(
     const ticket = await Ticket.findById(ticketId);
     if (!ticket) {
       throw new NotFoundError();
+    }
+
+    if (ticket.orderId) {
+      throw new BadRequestError('Cannot update the reserved ticket');
     }
 
     if (ticket.userId != req.currentUser!.id) {
