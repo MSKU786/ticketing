@@ -40,6 +40,14 @@ build:
         manual:
           - dest: .
             src: 'src/**/*.ts'
+    - image: us.gcr.io/ticketing-dev-419006/ticketing_expiration
+      context: expiration
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
 manifests:
   rawYaml:
     - infra/k8/*
