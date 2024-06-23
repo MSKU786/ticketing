@@ -15,6 +15,12 @@ spec:
       containers:
         - name: auth
           image: us.gcr.io/ticketing-dev-419006/ticketing_auth
+          resources:
+            requests:
+              memory: '128Mi'
+              cpu: '250m'
+            limits:
+              memory: '128Mi'
           env:
             - name: MONGO_URI
               value: 'mongodb://auth-mongo-srv:27017/auth'

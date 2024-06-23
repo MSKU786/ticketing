@@ -1,15 +1,24 @@
 import { Listener, Subjects, OrderCreatedEvent } from '@ticcketing/common';
 import { Message } from 'node-nats-streaming';
 import { queueGroupName } from './queue-group-name';
+import { expirationQueue } from '../../queues/expiration-queue';
 
-export class TicketCreatedListener extends Listener<OrderCreatedEvent> {
-  subject: Subjects.TicketCreated = Subjects.TicketCreated;
+export class OrderCreatedListener extends Listener<OrderCreatedEvent> {
+  subject: Subjects.OrderCreated = Subjects.OrderCreated;
   queueGroupName: string = queueGroupName;
 
   async onMessge(data: OrderCreatedEvent['data'], msg: Message) {
-    const { title, price, id } = data;
-    const ticket = Ticket.build({ id, title, price });
-    await ticket.save();
+    const delay = new Date(data.expiresAt).getTime() - new Date().getTime();
+    await expirationQueue.add(
+      {
+        orderId: data.id,
+      },
+      {
+        delay,
+      }
+    );
+
+    console.log('i wnat ot add some deelay over here');
     msg.ack();
   }
 }

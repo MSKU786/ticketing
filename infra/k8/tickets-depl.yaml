@@ -15,6 +15,12 @@ spec:
       containers:
         - name: tickets
           image: us.gcr.io/ticketing-dev-419006/ticketing_ticket
+          resources:
+            requests:
+              memory: '128Mi'
+              cpu: '250m'
+            limits:
+              memory: '128Mi'
           env:
             - name: NATS_CLIENT_ID
               valueFrom:

@@ -9,6 +9,8 @@ const expirationQueue = new Queue<Payload>('order:expiration', {
   },
 });
 
-expirationQueue.process(async (job) => {});
+expirationQueue.process(async (job) => {
+  console.log('i want to add some delay over here');
+});
 
 export { expirationQueue };

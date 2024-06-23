@@ -1,3 +1,4 @@
+import { OrderCreatedListener } from './events/listeners/order-created-listener';
 import { natsWrapper } from './nats-wrapper';
 
 const start = async () => {
@@ -28,7 +29,8 @@ const start = async () => {
     //on process termaination
     process.on('SIGTERM', () => natsWrapper.client.close());
 
-    //intializing the ticketlisteners
+    //intializing the Ordercreatedlistener
+    new OrderCreatedListener(natsWrapper.client).listen();
   } catch (err) {
     console.error(err);
   }
