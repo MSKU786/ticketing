@@ -1,7 +1,6 @@
 import {
   Listener,
   OrderCancelledEvent,
-  OrderCreatedEvent,
   OrderStatus,
   Subjects,
 } from '@ticcketing/common';
@@ -12,7 +11,7 @@ import { Order } from '../../models/order';
 export class OrderCancelledListener extends Listener<OrderCancelledEvent> {
   subject: Subjects.OrderCancelled = Subjects.OrderCancelled;
   queueGroupName: string = queueGroupName;
-  async onMessge(data: OrderCreatedEvent['data'], msg: Message): void {
+  async onMessge(data: OrderCancelledEvent['data'], msg: Message) {
     const order = await Order.findOne({
       _id: data.id,
       version: data.version - 1,
