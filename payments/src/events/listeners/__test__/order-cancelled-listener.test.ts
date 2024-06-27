@@ -46,5 +46,6 @@ it('ack the messge', async () => {
   const { listener, data, msg } = await setup();
 
   await listener.onMessge(data, msg);
-  expect(msg.ack()).toHaveBeenCalled();
+
+  expect(msg.ack).toHaveBeenCalled();
 });
