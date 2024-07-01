@@ -10,7 +10,7 @@ import {
 import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
 import { Order } from '../models/order';
-import { stripe } from '../stirpe';
+import { stripe } from '../stripe';
 const router = express.Router();
 
 router.post(
@@ -40,7 +40,7 @@ router.post(
       amount: order.price,
       source: token,
     });
-    res.send({ success: true });
+    res.status(201).send({ success: true });
   }
 );
 
