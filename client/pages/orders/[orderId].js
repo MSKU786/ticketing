@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
+import StripeCheckout from 'react-stripe-checkout';
 
 const OrderShow = ({ order }) => {
-  const [timeLeft, setTimeLeft] = useState();
+  const [timeLeft, setTimeLeft] = useState(0);
 
   useEffect(() => {
     const findTimeLeft = () => {
@@ -15,6 +16,16 @@ const OrderShow = ({ order }) => {
       clearInterval(timerId);
     };
   }, [order]);
+
+  if (timeLeft < 0) {
+    return (
+      <div>
+        {' '}
+        Order Expired
+        <StripeCheckout />{' '}
+      </div>
+    );
+  }
   return <div>Time Left to pay: {timeLeft} seconds</div>;
 };
 

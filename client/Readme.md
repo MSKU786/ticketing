@@ -5,3 +5,16 @@ eg:
 <Link href="/tickets/[ticketId]" as={`/tickets/${ticket.id}`}>
   View
 </Link>
+
+Module not found: Can't resolve 'prop-types'
+In the upcoming lecture, you will get an error thrown by react-stripe-checkout when to trying to load the application:
+
+[client] - error ./node_modules/react-stripe-checkout/dist/main.js:15:0
+
+[client] Module not found: Can't resolve 'prop-types'
+
+To resolve this, we will need to install an additional dependency to our client service:
+
+npm install prop-types
+
+After this change, re-run skaffold dev to rebuild the cluster.
